@@ -1,0 +1,212 @@
+//================================================================
+// Variable
+
+$loading-color: rgb(24, 144, 255);
+$loading-fade-color: rgba(24, 144, 255, 0.2);
+
+//================================================================ 
+
+body {
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    background: #fff;
+    text-align: center;
+}
+
+.card {
+    background: #F7F7F7;
+    border-radius: 2px;
+    display: inline-block;
+    margin: 10rem;
+    padding-bottom: 30px;
+    position: relative;
+    width: 40%;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+}
+
+
+@keyframes dotFlashing {
+    0% {
+        background-color: $loading-color;
+    }
+
+    50%,
+    100% {
+        background-color: $loading-fade-color;
+    }
+}
+
+.dot-flashing {
+    position: relative;
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    background-color: $loading-color;
+    color: $loading-color;
+    animation: dotFlashing 1s infinite linear alternate;
+    animation-delay: .5s;
+
+    &::before,
+    &::after {
+        content: '';
+        display: inline-block;
+        position: absolute;
+        top: 0;
+    }
+
+    &::before {
+        left: -15px;
+        width: 10px;
+        height: 10px;
+        border-radius: 5px;
+        background-color: $loading-color;
+        color: $loading-color;
+        animation: dotFlashing 1s infinite alternate;
+        animation-delay: 0s;
+    }
+
+    &::after {
+        left: 15px;
+        width: 10px;
+        height: 10px;
+        border-radius: 5px;
+        background-color: $loading-color;
+        color: $loading-color;
+        animation: dotFlashing 1s infinite alternate;
+        animation-delay: 1s;
+    }
+}
+
+
+//==============================
+
+svg {
+    width: 100px;
+
+    &.success {
+        stroke: #389e0d;
+    }
+
+    &.error {
+        stroke: #f5222d
+    }
+}
+
+.path {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 0;
+
+    &.circle {
+        -webkit-animation: dash 0.9s ease-in-out;
+        animation: dash 0.9s ease-in-out;
+    }
+
+    &.line {
+        stroke-dashoffset: 1000;
+        -webkit-animation: dash 0.9s 0.35s ease-in-out forwards;
+        animation: dash 0.9s 0.35s ease-in-out forwards;
+    }
+
+    &.check {
+        stroke-dashoffset: -100;
+        -webkit-animation: dash-check 0.9s 0.35s ease-in-out forwards;
+        animation: dash-check 0.9s 0.35s ease-in-out forwards;
+    }
+}
+
+
+
+
+
+@keyframes dash {
+    0% {
+        stroke-dashoffset: 1000;
+    }
+
+    100% {
+        stroke-dashoffset: 0;
+    }
+}
+
+
+
+@keyframes dash-check {
+    0% {
+        stroke-dashoffset: -100;
+    }
+
+    100% {
+        stroke-dashoffset: 900;
+    }
+}
+
+
+#long-arrow {
+    display: block;
+    margin: 30px auto;
+    width: 25px;
+    height: 25px;
+    border-top: 2px solid #000;
+    border-left: 2px solid #000;
+    transform: rotate(45deg);
+
+    &::after {
+        content: "";
+        display: block;
+        width: 2px;
+        height: 45px;
+        background-color: black;
+        transform: rotate(-45deg) translate(15px, 4px);
+        left: 0;
+        top: 0;
+    }
+
+    position: absolute;
+    right: 7%;
+    top: 1%;
+    animation-name: arrow-bounce;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+}
+
+
+
+@keyframes arrow-bounce {
+    0% {
+        top: 1%;
+    }
+
+    50% {
+        top: 3%;
+    }
+
+    100% {
+        top: 1%;
+    }
+}
+
+
+.container {
+    display: flex;
+    flex-direction: row;
+}
+
+.company {
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 0;
+}
+
+#text-line {
+    margin-right: 30px;
+    margin-left: 30px;
+}
+
+#status {
+    margin-top: 40px;
+}
+
+.status {
+    width: 40px;
+    transform: translateY(-15px);
+}

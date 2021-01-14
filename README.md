@@ -1,2 +1,3 @@
-# beanote_webpages
+# Beanote Webpages
+
 Host webpages for Beanote
